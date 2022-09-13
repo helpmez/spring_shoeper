@@ -136,9 +136,15 @@ public class ProductServiceImpl implements ProductService {
 
 	
 	@Override
-	public List<Attachment> selectProductImages() {
+	public List<Attachment> selectHotProductImages() {
 		
-		return productDAO.selectProductImages();
+		return productDAO.selectHotProductImages();
+	}
+	
+	@Override
+	public List<Attachment> selectNewProductImages() {
+		
+		return productDAO.selectNewProductImages();
 	}
 
 	@Override

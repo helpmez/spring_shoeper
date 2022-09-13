@@ -28,6 +28,9 @@
            			<when test="sortVal == '낮은 가격순'">
            				ORDER BY P.PRODUCT_PRICE
            			</when>
+           			<when test="sortVal == '평점순'">
+           				ORDER BY NVL(P.PRODUCT_TOT_RATING/DECODE(P.PRODUCT_TOT_RATINGNUM,0,NULL,P.PRODUCT_TOT_RATINGNUM),0) DESC
+           			</when>
            			<otherwise>
            				ORDER BY P.PRODUCT_PRICE DESC
            			</otherwise>
@@ -48,6 +51,9 @@
            AND PRODUCT_STATUS = 'Y'
            <if test="product_category != 0">
            		AND P.PRODUCT_CATEGORY = #{ product_category }
+           </if>
+           <if test="second_brand_name != 'All'">
+           		AND P.SECOND_BRAND_NAME = #{ second_brand_name }
            </if>
            <if test="sortVal != null">
            		<choose>
@@ -75,12 +81,16 @@
 	<select id="brandNameSelectList" resultType="string">
 		SELECT BRAND_NAME FROM MEMBER WHERE BRAND_NAME != '중고'
 	</select>
+	
+	<select id="secondhandNameSelectList" resultType="string">
+		SELECT BRAND_NAME FROM MEMBER WHERE BRAND_NAME != '중고'
+	</select>
 
 
 	<!-- 상품 등록 쿼리  -->
 	<insert id="insertSecondHandProduct" parameterType="Product_p">
-		INSERT INTO PRODUCT(PRODUCT_NO, PRODUCT_NAME, PRODUCT_DETAIL, PRODUCT_SIZEINFO, PRODUCT_SIZE, PRODUCT_PRICE, product_stock_240, product_stock_250, product_stock_260, PRODUCT_TYPE, MEMBER_NO, PRODUCT_STATUS, PRODUCT_CATEGORY)
-		VALUES(SEQ_PRODUCT_NO.NEXTVAL, #{product_name}, #{product_detail}, #{product_sizeinfo}, #{product_size}, #{product_price}, #{product_stock_240}, #{product_stock_250}, #{product_stock_260}, #{product_type}, #{ member_no }, 'Y', #{ product_category })
+		INSERT INTO PRODUCT(PRODUCT_NO, PRODUCT_NAME, PRODUCT_DETAIL, PRODUCT_SIZEINFO, PRODUCT_SIZE, PRODUCT_PRICE, product_stock_240, product_stock_250, product_stock_260, PRODUCT_TYPE, MEMBER_NO, PRODUCT_STATUS, PRODUCT_CATEGORY, SECOND_BRAND_NAME)
+		VALUES(SEQ_PRODUCT_NO.NEXTVAL, #{product_name}, #{product_detail}, #{product_sizeinfo}, #{product_size}, #{product_price}, #{product_stock_240}, #{product_stock_250}, #{product_stock_260}, #{product_type}, #{ member_no }, 'Y', #{ product_category },#{second_brand_name})
 	</insert>
 
 	<insert id="insertBrandProduct" parameterType="Product_p">
@@ -109,7 +119,8 @@
 		UPDATE PRODUCT
 		SET PRODUCT_DETAIL = #{product_detail},
 			PRODUCT_SIZEINFO = #{product_sizeinfo},
-			PRODUCT_PRICE = #{product_price}
+			PRODUCT_PRICE = #{product_price},
+			<!-- SECOND_BRAND_NAME = #{second_brand_name} -->
 		WHERE PRODUCT_NO = #{product_no}
 	</update>
 	
@@ -175,7 +186,7 @@
 	</select>
 	
 	
-	<select id="selectProductImages" resultType="Attachment">
+	<select id="selectHotProductImages" resultType="Attachment">
 		 SELECT A.PRODUCT_NO, RANK, ATT_NAME
 			FROM (SELECT *
           		FROM 
@@ -188,6 +199,16 @@
            <![CDATA[WHERE ROWNUM <= 10]]>) OL, ATTACHMENT A
 			WHERE OL.PRODUCT_NO = A.PRODUCT_NO
     			AND A.ATT_LEVEL = 1
+	</select>
+	
+	<select id="selectNewProductImages" resultType="Attachment">
+		 SELECT A.PRODUCT_NO, ATT_NAME
+			FROM  ATTACHMENT A, PRODUCT P 
+			<![CDATA[WHERE ROWNUM <= 10]]>
+			AND P.PRODUCT_TYPE = 1
+			AND A.ATT_LEVEL = 1
+			AND P.PRODUCT_NO = A.PRODUCT_NO
+    	  ORDER BY P.PRODUCT_NO DESC
 	</select>
 	
 	<!-- update -->
@@ -207,7 +228,8 @@
 		SET PRODUCT_DETAIL = #{product_detail},
 			PRODUCT_SIZEINFO = #{product_sizeinfo},
 			PRODUCT_SIZE = #{product_size},
-			PRODUCT_PRICE = #{product_price}
+			PRODUCT_PRICE = #{product_price},
+			SECOND_BRAND_NAME = #{second_brand_name}
 		WHERE PRODUCT_NO = #{product_no}
 	</update>
 	

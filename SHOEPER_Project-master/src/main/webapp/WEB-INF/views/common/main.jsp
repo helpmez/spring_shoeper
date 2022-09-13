@@ -52,7 +52,31 @@
         <div class="slide_wrapper">
             
             <ul class="bxslider">
-                <li><img class="img1" src="" alt="" id="" style="width: 100%; height:95%"/></li>
+                <li><img class="img1" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
+                <li><img class="img2" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
+                <li><img class="img3" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
+                <li><img class="img4" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
+                <li><img class="img5" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
+                <li><img class="img6" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
+                <li><img class="img7" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
+                <li><img class="img8" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
+                <li><img class="img9" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
+                <li><img class="img10" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
+            </ul>
+           
+        </div>
+    </div>
+    
+     
+	<div class="slide_NewArrivals">
+		<h1>New Arrivals</h1>
+	</div>
+	
+	 <div class="product_slide">
+        <div class="slide_wrapper">
+            
+            <ul class="bxslider_2">
+                <li><img class="img1" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
                 <li><img class="img2" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
                 <li><img class="img3" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
                 <li><img class="img4" src="" alt="" id="" style="width: 100%; height: 100%"/></li>
@@ -87,10 +111,29 @@
             });
         });
         
+        $(function() {
+
+            $('.bxslider_2').bxSlider({
+                minSlides: 1,
+                maxSlides: 5,
+                moveSlides: 5,
+                slideWidth: 300,
+                slideMargin: 20,
+                mode: 'horizontal',
+                speed: 1500,
+                pause: 10000,
+                infiniteLoop: true,
+                auto: true,
+                controls: true,
+                pager: false
+                
+            });
+        });
+        
         $(function(){
         	$.ajax({
     			type: "POST",
-    			url: "${pageContext.request.contextPath}/product/selectProductImages.do",
+    			url: "${pageContext.request.contextPath}/product/selectHotProductImages.do",
     			data: {}, 
 				
     			success: function(data){
@@ -162,7 +205,83 @@
     		});
     	}); 
         
+        $(function(){
+        	$.ajax({
+    			type: "POST",
+    			url: "${pageContext.request.contextPath}/product/selectNewProductImages.do",
+    			data: {}, 
+				
+    			success: function(data){
+    				console.log("data" ,data);
+    				console.log("data[0].att_name", data[0].att_name);
+    				console.log("data[0].product_no = ",data[0].product_no);
+    				console.log("data[0].product_name= ", data[0].product_name);
+    				console.log("TOP 10 이미지 불러오기 성공!")
+    			
+
+    				$('.bxslider_2>li>.img1').attr({
+    						src: "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[0].att_name,
+    						id: data[0].product_no
+    				});
+    				$('.bxslider_2>li>.img2').attr({
+						src: "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[1].att_name,
+						id: data[1].product_no
+					});
+    				$('.bxslider_2>li>.img3').attr({
+						src: "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[2].att_name,
+						id: data[2].product_no
+					});
+					$('.bxslider_2>li>.img4').attr({
+						src: "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[3].att_name,
+						id: data[3].product_no
+					});
+					$('.bxslider_2>li>.img5').attr({
+						src: "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[4].att_name,
+						id: data[4].product_no
+					});
+					$('.bxslider_2>li>.img6').attr({
+						src: "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[5].att_name,
+						id: data[5].product_no
+					});
+					$('.bxslider_2>li>.img7').attr({
+						src: "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[6].att_name,
+						id: data[6].product_no
+					});
+					$('.bxslider_2>li>.img8').attr({
+						src: "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[7].att_name,
+						id: data[7].product_no
+					});
+					$('.bxslider_2>li>.img9').attr({
+						src: "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[8].att_name,
+						id: data[8].product_no
+					});
+					$('.bxslider_2>li>.img10').attr({
+						src: "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[9].att_name,
+						id: data[9].product_no
+					});
+    				
+    				
+    			/* 이거 오류걸려서 고침 */	
+    			/* 	$('.bxslider>li>.img1').attr("id", data[0].product_no); */
+    			/* 	$('.bxslider>li>.img1').attr("src", "${pageContext.request.contextPath}/resources/images/productImgUpload/"+data[0].att_name); */
+    				
+    			},
+    			error: function(){
+    				alert('TOP 10 이미지 불러오기 실패!');
+  					console.log("에러")
+    			}
+    			
+    		});
+    	}); 
+        
         $('.bxslider>li>img').on('click', function() {
+        	var pType = 1;
+        	var product_no = $(this).attr("id");
+        	console.log("product_no="+product_no);
+        	location.href="${pageContext.request.contextPath}/product/productDetail.do?product_no="+product_no+"&pType="+pType;
+        });
+        
+        $('.bxslider_2>li>img').on('click', function() {
         	var pType = 1;
         	var product_no = $(this).attr("id");
         	console.log("product_no="+product_no);

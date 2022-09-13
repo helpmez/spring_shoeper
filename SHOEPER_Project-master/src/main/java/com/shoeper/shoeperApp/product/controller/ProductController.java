@@ -40,14 +40,14 @@ public class ProductController {
 			@RequestParam( value = "bName", required = false, defaultValue = "All") String bName, // 선택한 브랜드 이름 
 			@RequestParam( required = false, defaultValue = "") String sortVal, // 선택한 필터 정렬 값 
 			@RequestParam( value = "cPage", required = false, defaultValue = "1") int cPage,
+			@RequestParam( value = "sbName", required = false, defaultValue = "All") String sbName, // 중고 브랜드 이름
 			Model model
 			) {
 		// pType = 1 ? 브랜드 : 상품  
 
 		// product_category 와 brand_name 을 갖는 product VO 생성
-		Product product = new Product(categoryNo, bName, sortVal);
+		Product product = new Product(categoryNo, bName, sbName, sortVal);
 
-		
 		
 		// 한 페이지당 상품 갯수 
 		int numPerPage = 12;
@@ -136,6 +136,7 @@ public class ProductController {
 			System.out.println("product_sizeinfo : " + p.getProduct_sizeinfo());
 			System.out.println("product_size : " + p.getProduct_size());
 			System.out.println("product_status : " + p.getProduct_status());
+			System.out.println("second_brand_name : " + p.getSecond_brand_name());
 
 		// 1. 파일 저장 경로 및 파일 정보를 담을 객체 생성
 		List<Attachment> attachList = new ArrayList<>();
@@ -185,9 +186,9 @@ public class ProductController {
 		String inputSize = p.getProduct_size();
 		
 		if ( pType == 2) {
-			if (inputSize.equals("S")) {
+			if (inputSize.equals("240")) {
 				p.setProduct_stock_240(1);
-			} else if (inputSize.equals("M")) {
+			} else if (inputSize.equals("250")) {
 				p.setProduct_stock_250(1);
 			} else {
 				p.setProduct_stock_260(1);
@@ -332,6 +333,7 @@ public class ProductController {
 			originalProduct.setProduct_price(p.getProduct_price());
 			originalProduct.setProduct_detail(p.getProduct_detail());
 			originalProduct.setProduct_sizeinfo(p.getProduct_sizeinfo());
+			originalProduct.setSecond_brand_name(p.getSecond_brand_name());
 			originalProduct.setProduct_no(productNo);
 			
 			if(pType == 1) {
@@ -459,13 +461,24 @@ public class ProductController {
 	
 	
 	
-	@RequestMapping("/product/selectProductImages.do")
+	@RequestMapping("/product/selectHotProductImages.do")
 	@ResponseBody
-	public List<Attachment> selectProductImages() {
+	public List<Attachment> selectHotProductImages() {
 		
-		List<Attachment> list = productService.selectProductImages(); // 브랜드 기업이 올린 상품중 주문수가 많은 상품순
-		System.out.println("images :: 여기 왔나요");
-		System.out.println("selectProductImages [list] : " + list);
+		List<Attachment> list = productService.selectHotProductImages(); // 브랜드 기업이 올린 상품중 주문수가 많은 상품순
+		
+		System.out.println("selectHotProductImages [list] : " + list);
+		
+		return list;
+	}
+	
+	@RequestMapping("/product/selectNewProductImages.do")
+	@ResponseBody
+	public List<Attachment> selectNewProductImages() {
+		
+		List<Attachment> list = productService.selectNewProductImages(); // 브랜드 기업이 올린 상품중 신상품순
+		
+		System.out.println("selectNewProductImages [list] : " + list);
 		
 		return list;
 	}

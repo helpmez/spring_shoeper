@@ -108,7 +108,16 @@
 	                            <!-- 상품 정보 (hover) -->
 	                            <span class="p_attr thumbnail-info">
 	                                <span>${ p.brand_name }</span> <br />
-	                                <span>${ p.product_name }</span>
+	                                <span>${ p.product_name }</span> <br/>
+	                               <c:if test="${ p.product_stock_240 != 0}">
+	                               		<span>240mm</span><br>
+	                               </c:if>
+	                               <c:if test="${ p.product_stock_250 != 0}">
+	                               		<span>250mm</span><br>
+	                               </c:if>
+	                               <c:if test="${ p.product_stock_240 != 0}">
+	                               		<span>260mm</span>
+	                               </c:if>
 	                                <br><br>
 	                                <span>￦</span>
 	                                <span class="pPrice">${ p.product_price }</span>

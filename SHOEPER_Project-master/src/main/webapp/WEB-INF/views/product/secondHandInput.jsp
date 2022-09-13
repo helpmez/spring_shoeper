@@ -65,7 +65,22 @@
             <input type="text" id="productName" class="ininput" placeholder="상품명" name="product_name" required>
             <br>
             <input type="number" id="productPrice" class="ininput" placeholder="가격(숫자만 입력)" name="product_price" required>
-            <br><hr>
+            <br>
+             <b>Brand Name Option</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <select name="second_brand_name" id="second_brand_name" style="width: 160px;" required>
+		            <option value="">브랜드명</option>
+		            <option value="ADIDAS">ADIDAS</option>
+		            <option value="DOCS">DOCS</option>
+		            <option value="DR. MARTENS">DR. MARTENS</option>
+		            <option value="JIMMY CHOO">JIMMY CHOO</option>
+	                <option value="NEW BALANCE">NEW BALANCE</option>
+	                <option value="NIKE">NIKE</option>
+	                <option value="PRADA">PRADA</option>
+	                <option value="TOM BROWN">TOM BROWN</option>
+	                <option value="TODS">TODS</option>
+	                <option value="ETC">ETC</option>
+	          </select>
+            <hr>
             
             <h5>Product Detail</h5>
             <textarea id="productDetail" cols="32" rows="10" class="ininput" name="product_detail">
@@ -90,7 +105,7 @@
 		            <option value="260">260</option>
 	            </select>
 	            <select name="product_category" id="selectCategory" style="width: 160px;" required>
-		            <option value="">선택안함</option>
+		            <option value="">카테고리</option>
 		            <option value="1">운동화</option>
 		            <option value="2">남성용구두</option>
 		            <option value="3">여성용구두</option>

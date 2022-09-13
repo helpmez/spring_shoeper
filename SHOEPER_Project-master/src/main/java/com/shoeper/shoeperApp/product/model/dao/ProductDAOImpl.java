@@ -277,9 +277,15 @@ public class ProductDAOImpl implements ProductDAO {
 
 	
 	@Override
-	public List<Attachment> selectProductImages() {
+	public List<Attachment> selectHotProductImages() {
 		
-		return sqlSession.selectList("product-mapper.selectProductImages");
+		return sqlSession.selectList("product-mapper.selectHotProductImages");
+	}
+	
+	@Override
+	public List<Attachment> selectNewProductImages() {
+		
+		return sqlSession.selectList("product-mapper.selectNewProductImages");
 	}
 
 	@Override 

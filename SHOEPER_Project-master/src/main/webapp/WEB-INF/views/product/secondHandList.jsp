@@ -77,12 +77,17 @@
                         <!-- 클릭 시 보여줄 영역 (Dropdown) -->
                         <div class="dropArea">
                             <ul class="hiddenArea" id="brandList">
-                              	<li class="prod cate" id="0">All</li>
-                                <li class="prod cate" id="1">NIKE</li>
-                                <li class="prod cate" id="2">ADIDAS</li>
-                                <li class="prod cate" id="3">PUMA</li>
-                                <li class="prod cate" id="4">NEW BALANCE</li>
-                                <li class="prod cate" id="5">ASICS</li>
+                              	<li class="brand cate" id="0">All</li>
+                                <li class="brand cate" id="1">ADIDAS</li>
+                                <li class="brand cate" id="2">DOCS</li>
+                                <li class="brand cate" id="3">DR. MARTENS</li>
+                                <li class="brand cate" id="4">JIMMY CHOO</li>
+                                <li class="brand cate" id="6">NEW BALANCE</li>
+                                <li class="brand cate" id="7">NIKE</li>
+                                <li class="brand cate" id="8">PRADA</li>                                
+                                <li class="brand cate" id="9">TOM BROWN</li>
+                                <li class="brand cate" id="10">TODS</li>
+                                <li class="brand cate" id="11">ETC</li>
                             </ul>
                         </div> 
                     </li>
@@ -114,11 +119,12 @@
 
 	                            <!-- 상품 정보 (hover) -->
 	                            <span class="p_attr thumbnail-info">
-	                                <span>${ p.brand_name }</span> <br />
-	                                <span>${ p.product_name }</span>
+	                                  &nbsp;&nbsp;&nbsp;&nbsp;<span>${ p.second_brand_name }</span> <br />
+	                                  &nbsp;&nbsp;&nbsp;&nbsp;<span>${ p.product_name }</span>	<br/>              
+	                                  &nbsp;&nbsp;&nbsp;&nbsp;<span>${ p.product_size } mm</span>
 	                                     <br><br>
-	                                <span>￦</span>
-	                                <span class="pPrice">${ p.product_price }</span>
+	                                 &nbsp;&nbsp;&nbsp;&nbsp; <span>￦</span>
+	                                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="pPrice">${ p.product_price }</span>
 	                            </span>
 	                        </div>
 	                    </li>
@@ -148,7 +154,7 @@
     var sortVal; // 정렬필터값 
 	var pType;
 	var categoryNo;
-	
+	var sbName;
  	$( document ).ready( function() {
  		sortVal = '<%= pr.getSortVal() %>';
  		
@@ -156,28 +162,38 @@
  		$('.filter-div').children('.filter-text').on('click', function() {
  			pType = 2;
 			console.log(sortVal);
-			categoryNo = <%= pr.getProduct_category() %> ;	
+			categoryNo = <%= pr.getProduct_category() %> ;
+			sbName =  "<%= pr.getSecond_brand_name() %>" ;
 			console.log("categoryNo="+categoryNo);
 			<%-- sortVal = '<%= pr.getSortVal() %>' ; --%>
 			sortVal = $(this).text();
 			console.log("sortVal="+sortVal);
-			location.href = "${pageContext.request.contextPath}/product/productList.do?categoryNo="+categoryNo+"&pType=2&sortVal="+sortVal;
+			location.href = "${pageContext.request.contextPath}/product/productList.do?categoryNo="+categoryNo+"&pType=2&sbName="+sbName+"&sortVal="+sortVal;
 		});
  		
  		// 카테고리 클릭시 id 값을 가지고 selectList 로 이동 
  		$('#categoryList').children('.prod').on("click",function(){
 			categoryNo = $(this).attr("id");
 			pType = 2;
+			sbName = "<%= pr.getSecond_brand_name() %>" ;
 			console.log("categoryNo="+categoryNo);
-			/* if( bName != null) { */
-				location.href = "${pageContext.request.contextPath}/product/productList.do?categoryNo="+categoryNo+"&pType=2&sortVal="+sortVal;
-			/* } else {
-				location.href = "${pageContext.request.contextPath}/product/productList.do?categoryNo="+categoryNo+"&pType=2";	
-			}   */
+	
+				location.href = "${pageContext.request.contextPath}/product/productList.do?categoryNo="+categoryNo+"&pType=2&sbName="+sbName+"&sortVal="+sortVal;
+			
 			
 		});
  		
- 		
+ 	// 브랜드 클릭시 id 값을 가지고 selectList 로 이동 
+ 		$('#brandList').children('.brand').on("click",function(){
+			sbName = $(this).text();
+			pType = 1;
+			console.log("sbName="+sbName);	
+			categoryNo = <%= pr.getProduct_category() %> ;		
+			console.log("categoryNo="+categoryNo);
+			/* if( categoryNo != null) { */
+				location.href = "${pageContext.request.contextPath}/product/productList.do?sbName="+sbName+"&pType=2&categoryNo="+categoryNo+"&sortVal="+sortVal;
+			
+		});
  		
  	
  		// 상품 가격 천단위 구분 

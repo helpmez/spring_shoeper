@@ -85,7 +85,9 @@ public interface ProductService {
 
 	List<Map<String, String>> selectReviewList(int cPage, int numPerPage, int product_no);
 
-	List<Attachment> selectProductImages(); 
+	List<Attachment> selectHotProductImages(); 
+	
+	List<Attachment> selectNewProductImages(); 
 	
 	int selectReviewTotalContents(int product_no);
 

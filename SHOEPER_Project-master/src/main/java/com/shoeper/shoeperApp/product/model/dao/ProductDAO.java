@@ -155,7 +155,9 @@ public interface ProductDAO {
 	int selectReviewTotalContents(int product_no);
 
 
-	List<Attachment> selectProductImages();
+	List<Attachment> selectHotProductImages();
+	
+	List<Attachment> selectNewProductImages();
 	
 	void updateRating(Review review);
 	

@@ -17,7 +17,7 @@ article{
     overflow: overlay;
 }
 
-article > .video_content > .video_Brand {
+/* article > .video_content > .video_Brand {
     width: 50%;
   	height: 100%;
     display: inline-block;
@@ -76,7 +76,7 @@ article > .video_content > .video_Brand:hover > p {
 
 article > .video_content > .video_SHand:hover > p {
     visibility: visible;
-}
+} */
 
 .product_slide {
     width: 100%;
@@ -112,6 +112,19 @@ article > .video_content > .video_SHand:hover > p {
 	cursor: pointer;
 }
 
+.bxslider_2 li {
+    height: 360px;
+    background-color: #ffffff;
+}
+
+.bxslider_2 li img {
+	cursor: pointer !important;
+}
+
+
+.bxslider_2 li:hover {
+	cursor: pointer;
+}
 /* ------------------------------- */
 .cater3-movingBG {
     height: 1vh;
@@ -216,6 +229,12 @@ article > .video_content > .video_SHand:hover > p {
       100% {margin-left:0;}
     }
 .slide_HotItems h1 {
+		 text-decoration : none;
+		 font-style: oblique;
+		 text-align : center;
+}
+
+.slide_NewArrivals h1 {
 		 text-decoration : none;
 		 font-style: oblique;
 		 text-align : center;

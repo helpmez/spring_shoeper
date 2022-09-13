@@ -65,19 +65,19 @@
 		            <input type="number" id="productPrice" class="ininput" placeholder="가격(숫자만 입력)" name="product_price" required>
 		            <br><hr>
 		            <h5>Product Detail</h5>
-		            <textarea id="productDetail" cols="32" rows="8" class="ininput" placeholder="겉감 코튼100%/안감 폴리에스터100%" name="product_detail" required></textarea>
+		            <textarea id="productDetail" cols="32" rows="8" class="ininput" placeholder="" name="product_detail" required></textarea>
 		            <br><hr>
 		            <h5>Size, Color</h5>
-		            <textarea id="productInfo" cols="32" rows="8" class="ininput" placeholder="- S 어깨 52.5cm 가슴 62cm                      - Color : Black, Brown" name="product_sizeinfo" required></textarea>
+		            <textarea id="productInfo" cols="32" rows="8" class="ininput" placeholder="" name="product_sizeinfo" required></textarea>
 		            <br><hr>
 		            <h5>Option & Stock</h5>
 		            <!-- <input type="text" id="productOption" placeholder="옵션명" class="ininput"> -->
 		
-					<span> S size : &nbsp;&nbsp; </span>
+					<span> 240 : &nbsp;&nbsp; </span>
 		            <input type="text" id="quantity1" class="ininput2" placeholder="수량 입력" name="product_stock_240" value="0"><br>
-		            <span> M size : &nbsp;&nbsp; </span>
+		            <span> 250 : &nbsp;&nbsp; </span>
 		            <input type="text" id="quantity2" class="ininput2" placeholder="수량 입력" name="product_stock_250" value="0"><br>
-		            <span> L size : &nbsp;&nbsp; </span>
+		            <span> 260 : &nbsp;&nbsp; </span>
 		            <input type="text" id="quantity3" class="ininput2" placeholder="수량 입력" name="product_stock_260" value="0"><br>
 		            <hr>
 		            <h5>Category</h5>

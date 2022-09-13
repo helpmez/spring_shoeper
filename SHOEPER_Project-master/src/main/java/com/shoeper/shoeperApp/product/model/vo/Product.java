@@ -28,6 +28,7 @@ public class Product implements Serializable {
 	private int review_rating;
 	private int product_tot_rating;
 	private int product_tot_ratingnum;
+	private String second_brand_name;
 	
 	
 	
@@ -45,10 +46,11 @@ public class Product implements Serializable {
 	private String att_name;		// 상품의 각 대표(1)번 사진 담아오는 변수
 	private String sortVal;			// 상품의 최신순, 가격순으로 정렬하기 위한 사용자 선택값을 담아오는 변수 
 	
-	public Product(int product_category, String brand_name, String sortVal) {
+	public Product(int product_category, String brand_name, String second_brand_name,  String sortVal) {
 		this.product_category = product_category;
 		this.brand_name = brand_name;
 		this.sortVal = sortVal;
+		this.second_brand_name = second_brand_name;
 	}
 
 	

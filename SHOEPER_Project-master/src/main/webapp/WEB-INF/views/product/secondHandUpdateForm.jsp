@@ -75,8 +75,22 @@
                 
                 <h4 id="pName">${ product.product_name }</h4>
                 <span style="margin-left: 260px; margin-right: 5px;" >￦</span><input type="text" name="product_price" id="ppPrice" value="${ product.product_price }" size="4" style="float: right; margin-right: 20px;"/>  <br><hr>
-                
-
+                <dt><b>Brand Name</b>
+                <select name="second_brand_name" id="second_brand_name" style="width: 130px; float: right; margin-right: 30px;" required>
+		            <option value="${product.second_brand_name }">${product.second_brand_name }</option>
+		            <option value="ADIDAS">ADIDAS</option>
+		            <option value="DOCS">DOCS</option>
+		            <option value="DR. MARTENS">DR. MARTENS</option>
+		            <option value="JIMMY CHOO">JIMMY CHOO</option>
+	                <option value="NEW BALANCE">NEW BALANCE</option>
+	                <option value="NIKE">NIKE</option>
+	                <option value="PRADA">PRADA</option>
+	                <option value="TOM BROWN">TOM BROWN</option>
+	                <option value="TODS">TODS</option>
+	                <option value="ETC">ETC</option>
+	          	</select>
+                </dt>
+				<hr>
                 <dl>
                     <dt class="drop"><b>Product Detail</b> 
                         <span class="accIcon" style="float: right; margin-right: 30px;"> 
@@ -109,10 +123,10 @@
                     <dt>
                         <b>Select Size</b>
                         <select name="product_size" id="selectSize" style="width: 130px; float: right; margin-right: 30px;">
-                            <option value="">선택안함</option>
-				            <option value="S">S</option>
-				            <option value="M">M</option>
-				            <option value="L">L</option>
+                            <option value="${product.product_size }">${product.product_size }</option>
+				            <option value="240">240</option>
+				            <option value="250">250</option>
+				            <option value="260">260</option>
                         </select> <br>
                     </dt><hr>
                 </dl>
@@ -134,7 +148,7 @@
 		
 		// 상품 취소 
 		$("#cancel").on("click",function(){
-			location.href = "${pageContext.request.contextPath}/myPage/myPage_Brand_Product.mp";
+			location.href = "${pageContext.request.contextPath}/myPage/myPage_Product.mp";
 		});
 	
 	

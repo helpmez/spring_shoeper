@@ -108,11 +108,11 @@
                     <hr>
                     <dt>
                         <b>quantity</b><br /><br /><br />
-		                    <span> S size : &nbsp;&nbsp;&nbsp; </span>
+		                    <span> 240 size : &nbsp;&nbsp;&nbsp; </span>
 				            <input type="text" id="quantity1" class="ininput2" placeholder="수량 입력" name="product_stock_240" value="${ product.product_stock_240 }"><br>
-				            <span> M size : &nbsp;&nbsp; </span>
+				            <span> 250 size : &nbsp;&nbsp;&nbsp; </span>
 				            <input type="text" id="quantity2" class="ininput2" placeholder="수량 입력" name="product_stock_250" value="${ product.product_stock_250 }"><br>
-				            <span> L size : &nbsp;&nbsp;&nbsp; </span>
+				            <span> 260 size : &nbsp;&nbsp;&nbsp; </span>
 				            <input type="text" id="quantity3" class="ininput2" placeholder="수량 입력" name="product_stock_260" value="${ product.product_stock_260 }"><br>
                     </dt><hr>
                 </dl>

@@ -110,10 +110,10 @@
 	                                <span>${ p.brand_name }</span> <br />
 	                                <span>${ p.product_name }</span> <br/>
 	                               <c:if test="${ p.product_stock_240 != 0}">
-	                               		<span>240mm</span><br>
+	                               		<span>240mm,</span>
 	                               </c:if>
 	                               <c:if test="${ p.product_stock_250 != 0}">
-	                               		<span>250mm</span><br>
+	                               		<span>250mm,</span>
 	                               </c:if>
 	                               <c:if test="${ p.product_stock_240 != 0}">
 	                               		<span>260mm</span>

@@ -232,7 +232,7 @@
             <!-- JOIN BTN-->
             <div class="joinOrCancel">
                 <button type="button" id="joinBtn" class="btn btn-secondary btn-sm" onclick="check_form();">가입하기</button>
-                <button type="button" id="cancelBtn" class="btn btn-secondary btn-sm">작성 취소</button>
+                <button type="button" id="cancelBtn" class="btn btn-secondary btn-sm" onClick="history.back()">작성 취소</button>
             </div>
             
             <br />

@@ -35,6 +35,19 @@ public class MemberDAOImpl implements MemberDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override 
+	
+	public void deleteMember(String member_id, int member_no) {
+		
+		sqlSession.delete("cart-mapper.deleteCartProductAll",member_no);
+		sqlSession.delete("orderList-mapper.deleteReviewAll",member_no); 
+		sqlSession.delete("order-mapper.deleteAllPurchase",member_no); 
+		sqlSession.delete("order-mapper.deleteSaleListAll",member_no);  
+		sqlSession.delete("order-mapper.deleteOrderAll",member_no);
+		sqlSession.delete("productList-mapper.deleteAllProduct",member_no);
+		sqlSession.delete("member-mapper.deleteMember",member_id);
+	}
 
 	@Override
 	public Member selectMemberID(Member member) {

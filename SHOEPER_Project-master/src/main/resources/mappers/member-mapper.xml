@@ -36,6 +36,10 @@
 		)
 	</insert>
 
+	<delete id="deleteMember" parameterType="string">
+		DELETE FROM MEMBER WHERE MEMBER_ID = #{member_id}
+	</delete>
+	
 	<select id="selectOneMember" parameterType="string" resultMap="resultMember" >
 		SELECT * FROM MEMBER
 		WHERE MEMBER_ID = #{ member_id }

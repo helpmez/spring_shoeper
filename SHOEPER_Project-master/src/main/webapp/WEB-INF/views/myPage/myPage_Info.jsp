@@ -211,7 +211,28 @@
                         </tr>
                     </tbody>
                 </table>
-
+                <br/>
+				<div> 
+					<button id="delete-member" style="  background-color : red;">회원탈퇴</button>
+				</div>
+				<div class="delete-member" style="display : none;">
+					
+					<h2>회원 탈퇴 확인</h2>
+					<form action="${pageContext.request.contextPath}/member/deleteMember.do" method="POST">
+						<div class="form-group">
+							아이디 확인<input type="text" class="form-control" id="member_id"
+								placeholder="Enter password" name="member_id">
+						</div>
+							암호 확인 <input type="password" class="form-control" id="member_pw"
+								placeholder="Enter password" name="member_pw">
+						</br>
+				 	<div class="btn-group">
+                     	<input type="submit" value="확인">
+                     	<input type="reset"  id="reset-member" value="취소">
+                 	</div>
+                 	</form>
+                 	</div>
+                 </div>
             </div>
 
         </section>
@@ -273,6 +294,18 @@
         $('.update-account').hide()
         $('.account').show()
     })
+    
+     $('#delete-member').on('click', function () {
+        $('.delete-member').show()
+        $('#delete-member').hide()
+    })
+
+    $('#reset-member').on('click', function () {
+        $('.delete-member').hide()
+        $('#delete-member').show()
+    })
+    
+
 	
     /* 주소 입력 */
         // 참조 API : http://postcode.map.daum.net/guide

@@ -69,6 +69,12 @@
 		SET PRODUCT_STATUS = 'N'
 		WHERE PRODUCT_NO = #{product_no}
 	</update>
+	
+	<delete id="deleteAllProduct" parameterType="_int">
+		DELETE FROM PRODUCT 
+		WHERE MEMBER_NO = #{member_no}
+	
+	</delete>
 	 
 	<select id="selectProductTotalContents" resultType="_int">
 		SELECT COUNT(*)

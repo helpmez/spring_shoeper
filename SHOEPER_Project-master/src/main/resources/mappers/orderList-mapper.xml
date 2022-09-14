@@ -111,6 +111,9 @@
 		INSERT INTO REVIEW VALUES(SEQ_REVIEW_NO.NEXTVAL, #{ review_contents }, SYSDATE, #{ review_title }, #{ member_no }, #{ product_no }, #{order_no}, #{review_rating})
 	</insert> 
 	
+	<delete id="deleteReviewAll" parameterType="_int">
+		DELETE FROM REVIEW WHERE MEMBER_NO = #{member_no}
+	</delete>
 	
 	
 	<update id="updatePurchaseStatus" parameterType="_int">

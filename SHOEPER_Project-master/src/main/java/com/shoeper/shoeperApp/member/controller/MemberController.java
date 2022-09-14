@@ -16,7 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,11 +51,12 @@ public class MemberController {
 	
 	// 모달에서 마이페이지로 이동
 	@RequestMapping("/member/goMyPage.do")
-	public String goMyPage(HttpServletRequest req) {
+	public String goMyPage(HttpServletRequest req, Model model) {
 		
 		HttpSession session = req.getSession();
 		Member member = (Member) session.getAttribute("member");	 
 		
+				
 		if ( member.getLogin_type() == 1) return "myPage/myPage_Brand_Info";  // login_type이 1이면 기업 로그인
 		else return "myPage/myPage_Info";          							  // 아니면 일반 회원 로그인 
 	}
@@ -129,7 +133,7 @@ public class MemberController {
 	@RequestMapping("member/memberJoinEnd.do")
 	public String memberJoinEnd(SessionStatus status,Member member,Model model) {
 		 					// SessionStatus : 컨트롤러에서 세션에 저장된 데이터를 지워서 메모리 누수를 막는 클래스이다.
-				System.out.println("joinEnd 들어온 정보 : " + member);
+				
 		
 		String pass1 = member.getMember_pw();
 		String pass2 = bcrypt.encode(pass1);  // 해시함수 암호화
@@ -169,6 +173,45 @@ public class MemberController {
 		
 		return "common/msg";
 	}
+	
+	
+	  @RequestMapping("member/deleteMember.do") 
+	  public String deleteMember( @RequestParam String member_id, 
+			  					@RequestParam String member_pw, Model model,
+			  			        SessionStatus status) {
+		 
+		  
+		  Member result = memberService.selectOneMember(member_id);
+		
+		  
+		  String msg = "";
+		  String loc = "";
+		  if ( bcrypt.matches(member_pw, result.getMember_pw()) ) {
+			  	if (! status.isComplete()) {
+			  		
+			  		status.setComplete();
+			  		
+			  		memberService.deleteMember(member_id, result.getMember_no());
+			  		
+			  		 msg = "회원탈퇴가 완료되었습니다. 그동안 이용해주셔서 감사합니다.";
+					 loc = "/";
+					 
+				   model.addAttribute("msg",msg);
+				   model.addAttribute("loc",loc);
+				   
+			  		return "common/msg";
+			  	}
+				
+		  } else {
+			  msg = "비밀번호가 일치하지 않습니다";
+			  loc = "/";
+		  }
+		  model.addAttribute("msg",msg);
+		  model.addAttribute("loc",loc);
+		  
+	  return "common/msg"; 
+	}
+	 
 	
 	// 아이디 찾기 실행 시 메일로 아이디 보내주기 
 	@RequestMapping(value={"member/memberLogin.do", "*/member/memberLogin.do"})

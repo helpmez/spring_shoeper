@@ -11,6 +11,8 @@ public interface MemberDAO {
 	int insertBrandMember(Member member);
 	
 	int updateMember(Member member);
+	
+	void deleteMember(String memberId, int memberNo );
 
 	Member selectMemberID(Member member);
 
@@ -20,6 +22,8 @@ public interface MemberDAO {
 	int checkIdDuplicate(String memberId);
 
 	String selectEmailCount(String email);
+	
+	
 	
 }
 

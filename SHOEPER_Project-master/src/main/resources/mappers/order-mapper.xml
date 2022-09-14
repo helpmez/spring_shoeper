@@ -7,6 +7,10 @@
     	 INSERT INTO O_ORDER VALUES(SEQ_ORDER_NO.NEXTVAL, #{receiver_name}, #{order_address}, DEFAULT, #{order_memo}, #{total_price}, #{member_no})
     </insert>
     
+    <delete id="deleteOrderAll" parameterType="_int">
+    	DELETE FROM O_ORDER WHERE MEMBER_NO = #{member_no}
+    </delete>
+    
     <insert id="insertOrderList" parameterType="OrderList">
     	INSERT INTO O_ORDER_LIST VALUES(#{order_size}, #{order_quantity},SEQ_ORDER_NO.CURRVAL ,#{product_no}, DEFAULT)
     </insert>
@@ -15,9 +19,17 @@
     	INSERT INTO PURCHASE VALUES(SEQ_ORDER_NO.CURRVAL, DEFAULT, #{member_no})
     </insert>
     
+    <delete id="deleteAllPurchase" parameterType="_int"> 
+    	DELETE FROM PURCHASE WHERE MEMBER_NO = #{member_no}
+    </delete>
+    
     <insert id="insertSaleList" parameterType="_int">
     	INSERT INTO SALE_LIST VALUES(SEQ_ORDER_NO.CURRVAL, DEFAULT, #{member_no})
     </insert>
+    
+    <delete id="deleteSaleListAll" parameterType="_int">
+    	DELETE FROM SALE_LIST WHERE MEMBER_NO = #{member_no}
+    </delete>
     
     <select id="selectOrderList" resultType="Order">
     	SELECT *
@@ -25,4 +37,5 @@
 		WHERE ORDER_NO = (SELECT MAX(ORDER_NO) FROM O_ORDER)
     </select>
     
+   
 </mapper>

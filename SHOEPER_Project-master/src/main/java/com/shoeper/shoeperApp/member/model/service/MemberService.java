@@ -13,6 +13,8 @@ public interface MemberService {
 	int insertBrandMember(Member member);
 	
 	int updateMember(Member member);
+	
+	void deleteMember(String memberId,int memberNo);
 
 	Member selectMemberID(Member member);
 

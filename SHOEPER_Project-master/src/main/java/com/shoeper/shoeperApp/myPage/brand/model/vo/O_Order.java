@@ -36,4 +36,5 @@ public class O_Order implements Serializable {
 	private int order_quantity;
 	private String brand_name;
 	private int order_status;
+	private int order_size;
 }

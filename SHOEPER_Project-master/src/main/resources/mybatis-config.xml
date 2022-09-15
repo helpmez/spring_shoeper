@@ -22,9 +22,12 @@
 		<typeAlias type="com.shoeper.shoeperApp.product.model.vo.Attachment" alias="Attachment" />
 		<typeAlias type="com.shoeper.shoeperApp.product.model.vo.Review4view" alias="review_v" />
 		<typeAlias type="com.shoeper.shoeperApp.product.model.vo.Review" alias="review" />
+		<typeAlias type="com.shoeper.shoeperApp.product.model.vo.ReviewAtt" alias="ReviewAttachment" />
 		<typeAlias type="com.shoeper.shoeperApp.myPage.senondHand.model.vo.Product" alias="Product_s"></typeAlias>
 		<typeAlias type="com.shoeper.shoeperApp.myPage.senondHand.model.vo.Review_ProductInfo" alias="Product_rev"></typeAlias>
-		<typeAlias type="com.shoeper.shoeperApp.myPage.brand.model.vo.O_Order_List" alias="O_Order_List" />
+		
+	
+	
 	</typeAliases>
 	
 	<typeHandlers>

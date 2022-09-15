@@ -108,7 +108,12 @@
 		INSERT INTO ATTACHMENT(ATT_NO, ATT_NAME, ATT_DATE, ATT_LEVEL, ATT_STATUS, PRODUCT_NO)
 		VALUES(SEQ_ATT_NO.NEXTVAL, #{att_name}, default , #{att_level}, 'Y', #{product_no})
 	</insert>
-
+	
+	<!-- <insert id="insertReviewAttachment" parameterType="ReviewAttachment">
+		INSERT INTO REVIEWATT (REVIEWATT_NO, ATT_NAME, MEMBER_NO, PRODUCT_NO, ATT_LELVEL)
+		VALUES (SEQ_REVIEWATT_NO.NEXTVAL, #{att_name}, #{member_no}, #{product_no}, #{att_level})
+	</insert> -->
+	
 	<!-- 상품 수정 -->
 	<insert id="updateSecondHandProduct" parameterType="Attachment">
 		INSERT INTO PRODUCT(PRODUCT_NO, PRODUCT_NAME, PRODUCT_DETAIL, PRODUCT_SIZEINFO, PRODUCT_SIZE, PRODUCT_PRICE, product_stock_240, product_stock_250, product_stock_260, PRODUCT_TYPE, MEMBER_NO, PRODUCT_STATUS, PRODUCT_CATEGORY)
@@ -173,12 +178,13 @@
 	</update>
 	
 	 <select id="selectReviewList" parameterType="_int" resultType="review_v">
-		SELECT R.REVIEW_NO, R.REVIEW_TITLE, M.MEMBER_NICKNAME, R.REVIEW_DATE, R.REVIEW_CONTENTS, R.REVIEW_RATING
+		SELECT R.REVIEW_NO, R.REVIEW_TITLE, M.MEMBER_NICKNAME, R.REVIEW_DATE, R.REVIEW_CONTENTS, R.REVIEW_RATING, R.REVIEWATT_NAME
 		FROM REVIEW R, MEMBER M
 		WHERE R.MEMBER_NO = M.MEMBER_NO
 		AND PRODUCT_NO = ${ product_no }
 		ORDER BY REVIEW_NO DESC
 	</select> 
+	
 	
 	<select id="selectReviewTotalContents" parameterType="_int" resultType="_int">
 		SELECT COUNT(*) FROM REVIEW

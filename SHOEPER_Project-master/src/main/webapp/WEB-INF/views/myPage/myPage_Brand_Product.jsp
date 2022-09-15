@@ -75,11 +75,11 @@
                             </td>
                             <td class="product-stock">
                                 <div class="stock-area">                                    
-                                    <span class="product-size">small</span>&nbsp;-
+                                    <span class="product-size">240</span>&nbsp;-
                                     <span class="product-stock">${p.product_stock_240}</span><br>
-                                    <span class="product-size">medium</span>&nbsp;-
+                                    <span class="product-size">250</span>&nbsp;-
                                     <span class="product-stock">${p.product_stock_250}</span><br>
-                                    <span class="product-size">large</span>&nbsp;-
+                                    <span class="product-size">260</span>&nbsp;-
                                     <span class="product-stock">${p.product_stock_260}</span>
                                 </div>
                             </td>

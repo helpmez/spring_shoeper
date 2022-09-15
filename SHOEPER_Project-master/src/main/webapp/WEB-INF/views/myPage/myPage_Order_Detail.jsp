@@ -29,10 +29,10 @@
                     <tbody>
                         <tr style="text-align: center;">
                             <td>
-                                <div class="customer-name">옷삼이</div>
+                                <div class="customer-name">이름</div>
                             </td>
                             <td>
-                                <div class="customer-address">서울시 강남구 옷삼로333, 21 2층</div>
+                                <div class="customer-address">주소</div>
                             </td>
                             <td>
                                 <div class="customer-phone">010-1234-1234</div>
@@ -47,22 +47,38 @@
                             <th>상품명</th>
                             <th>주문일자</th>
                             <th>수량</th>
+                            <th>사이즈</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr style="text-align: center;">
                             <td class="modal-product">
-                                <span class="product-name">Round String Jacket Brown </span>
-                                <span class="product-option">(small)</span>
+                                <span class="product-name">상품명 </span>
                             </td>
                             <td class="modal-date">
-                                <div class="order-date">2021.06.06</div>
+                                <div class="order-date">주문일자</div>
                             </td>
                             <td class="modal-quantity">
-                                <div class="order-quantity">3</div>
+                                <div class="order-quantity">수량</div>
+                            </td>
+                            <td class="modal-size">
+                            	<div class="product-size">사이즈</div>
                             </td>
                         </tr>
                     </tbody>
+                </table>
+                <div class="product-info-title detail-subtitle">배송요청사항</div>
+                <table class="order-list">
+                	<thead>               		
+               			<th>내용</th>
+                	</thead>
+                	<tbody>
+                		<tr style="text-align:center;">
+                			<td class="modal-memo">
+                				<span class="product-memo">요청사항</span>
+                			</td>
+                		</tr>
+                	</tbody>
                 </table>
                 <div class="price-area">
                     <span>주문금액 : </span>

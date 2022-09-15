@@ -19,4 +19,5 @@ public class Review {
 	private int product_no;
 	private int order_no;
 	private int review_rating;
+	private String reviewatt_name;
 }

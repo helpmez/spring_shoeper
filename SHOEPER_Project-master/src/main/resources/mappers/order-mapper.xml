@@ -12,7 +12,8 @@
     </delete>
     
     <insert id="insertOrderList" parameterType="OrderList">
-    	INSERT INTO O_ORDER_LIST VALUES(#{order_size}, #{order_quantity},SEQ_ORDER_NO.CURRVAL ,#{product_no}, DEFAULT)
+    	INSERT INTO O_ORDER_LIST(ORDER_SIZE, ORDER_QUANTITY,ORDER_NO,PRODUCT_NO,ORDER_STATUS) 
+    	VALUES(#{order_size}, #{order_quantity},SEQ_ORDER_NO.CURRVAL ,#{product_no}, DEFAULT)
     </insert>
     
     <insert id="insertPurchase" parameterType="_int">

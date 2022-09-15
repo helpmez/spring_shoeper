@@ -1,6 +1,8 @@
 package com.shoeper.shoeperApp.myPage.senondHand.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shoeper.shoeperApp.common.Utils;
 import com.shoeper.shoeperApp.member.model.service.MemberService;
@@ -29,6 +32,7 @@ import com.shoeper.shoeperApp.myPage.senondHand.model.vo.myPageOrderList;
 import com.shoeper.shoeperApp.product.model.service.ProductService;
 import com.shoeper.shoeperApp.product.model.vo.Attachment;
 import com.shoeper.shoeperApp.product.model.vo.Review;
+import com.shoeper.shoeperApp.product.model.vo.ReviewAtt;
 
 @SessionAttributes({ "member" })
 @Controller
@@ -451,15 +455,48 @@ public class SecondHandConrtoller {
 	}
 
 	@RequestMapping("/myPage/reviewEnroll.mp")
-	public String reviewEnroll(Review review, Model model) {
+	public String reviewEnroll(Review review, Model model, HttpServletRequest req,MultipartFile[] upFiles) {
 		
 		int pno = review.getProduct_no();
+		int mno = review.getMember_no();
+	
+		List<ReviewAtt> ReviewAttList = new ArrayList<>();
+		int att_level = 0;
+		String savePath = req.getServletContext().getRealPath("/resources/images/reviewImgUpload");
 		
-		System.out.println("review 등록 controller 접근 : " + review);
+		for (MultipartFile f : upFiles) {
+		
+			
+			if (f.isEmpty() == false) {
+		
+				String originName = f.getOriginalFilename();
 
+
+				try {
+						
+					f.transferTo(new File(savePath + "/" + originName));
+
+				} catch (IllegalStateException | IOException e) {
+
+					e.printStackTrace();
+				}
+
+
+				ReviewAtt a = new ReviewAtt();
+				
+				a.setAtt_name(originName);
+
+				att_level++;
+				a.setAtt_level(att_level); 
+				a.setProduct_no(pno); 
+				a.setMember_no(mno);
+
+				ReviewAttList.add(a);
+			}
+		}
 		String msg = "";
 		String loc = "";
-		System.out.println("리뷰 평점 : " + review.getReview_rating());
+		
 		productService.updateRating(review);
 		int result = secondHandService.insertReview(review);
 
@@ -475,7 +512,8 @@ public class SecondHandConrtoller {
 		
 
 		return "common/msg";
-	}
+	
+		}
 
 	@RequestMapping("/header/totalSearch.do")
 	public String totalSearch(@RequestParam(value = "totalSearch") String totalSearch, Model model,

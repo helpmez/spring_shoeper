@@ -54,7 +54,7 @@
     <div class="package">
         <div class="fileArea" id="fileArea">
             <!--  첨부 사진 추가 영역 -->
-            <!-- (input:file#thumbImg$[name=thumbImg$ onchange=loadImg(this,$)])*4  -->
+         
             <input type="file" accept="image/*" name="productImg" id="thumbImg1" onchange="loadImg(this, 1);" />
             <input type="file" accept="image/*" name="productImg" id="thumbImg2" onchange="loadImg(this, 2);" />
             <input type="file" accept="image/*" name="productImg" id="thumbImg3" onchange="loadImg(this, 3);" />

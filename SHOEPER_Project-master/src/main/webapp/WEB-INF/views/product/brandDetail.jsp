@@ -89,19 +89,19 @@
                         <select name="" id="selectSize" class="selectSize" style="width: 140px; float: right; margin-right: 30px;" >
                             <option value="">선택안함</option>
                            	<c:if test="${ product.product_stock_240 != 0}">
-                            	<option value="S">240</option>
+                            	<option value="240">240</option>
                             </c:if>
                             <c:if test="${ product.product_stock_240 == 0}">
                             	<option value="">240 - 품절</option>
                             </c:if>
                             <c:if test="${ product.product_stock_250 != 0}">
-                            	<option value="M">250</option>
+                            	<option value="250">250</option>
                             </c:if>
                             <c:if test="${ product.product_stock_250 == 0}">
                             	<option value="">250 - 품절</option>
                             </c:if>
                             <c:if test="${ product.product_stock_260 != 0}">
-                            	<option value="L">260</option>
+                            	<option value="260">260</option>
                             </c:if>
                             <c:if test="${ product.product_stock_260 == 0}">
                             	<option value="">260 - 품절</option>
@@ -190,6 +190,9 @@
 	           	<dd class="dropArea">
 	            	<div>
 	                	<br />
+	                	<img style="margin-left: 150px" src="${pageContext.request.contextPath }/resources/images/reviewImgUpload/${ r.reviewatt_name }" alt="">
+	                	<br/>
+	                	<br/>
 	                	<span class="review-content">
 		                	${ r.review_contents }
 	                	</span>

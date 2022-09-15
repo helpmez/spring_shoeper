@@ -21,7 +21,7 @@
 	</select>
 
    <select id="selectBrandOrderDetail" resultType="O_Order" parameterType="O_Order">
-   		SELECT A.ORDER_NO, A.MEMBER_NO, C.PRODUCT_NAME, A.ORDER_ADDRESS, A.RECEIVER_NAME, A.ORDER_DATE, B.ORDER_QUANTITY, (B.ORDER_QUANTITY*C.PRODUCT_PRICE) AS TOTAL_PRICE
+   		SELECT A.ORDER_NO, A.MEMBER_NO, A.ORDER_MEMO, C.PRODUCT_NAME, B.ORDER_SIZE, A.ORDER_ADDRESS, A.RECEIVER_NAME, A.ORDER_DATE, B.ORDER_QUANTITY, (B.ORDER_QUANTITY*C.PRODUCT_PRICE) AS TOTAL_PRICE
    		FROM O_ORDER A, O_ORDER_LIST B, PRODUCT C
    		WHERE A.ORDER_NO = B.ORDER_NO
         	AND B.PRODUCT_NO = C.PRODUCT_NO AND 
@@ -41,7 +41,18 @@
    </update>
 
 	<select id="selectOrderList" parameterType="string" resultType="O_Order">
-		
+		<!-- SELECT M.BRAND_NAME, P.PRODUCT_NO, P.PRODUCT_NAME, OL.ORDER_SIZE AS PRODUCT_SIZE, O.ORDER_NO, O.ORDER_DATE, (OL.ORDER_QUANTITY*P.PRODUCT_PRICE) AS TOTAL_PRICE, OL.ORDER_STATUS 
+		FROM O_ORDER O, O_ORDER_LIST OL, MEMBER M, PRODUCT P , (SELECT BRAND_NAME, PRODUCT_NO
+																FROM MEMBER, PRODUCT, O_ORDER, O_ORDER_LIST
+																WHERE PROCUT_NO = O_ORDER_LIST.PROCUT_NO
+																	AND PRODUCT.MEMBER_NO = MEMBER_NO
+																	AND )
+		WHERE O.ORDER_NO = OL.ORDER_NO 
+			AND OL.PRODUCT_NO = P.PRODUCT_NO 
+			AND O.MEMBER_NO = M.MEMBER_NO 
+			AND M.MEMBER_NAME= #{ member_name }
+		ORDER BY O.ORDER_DATE DESC
+		 -->
 		SELECT M.BRAND_NAME, S.*
 		FROM MEMBER M, PRODUCT P,  (SELECT P.PRODUCT_NO, P.PRODUCT_NAME, OL.ORDER_SIZE AS PRODUCT_SIZE, O.ORDER_NO, O.ORDER_DATE, (OL.ORDER_QUANTITY*P.PRODUCT_PRICE) AS TOTAL_PRICE, OL.ORDER_STATUS
 		                            FROM O_ORDER O, O_ORDER_LIST OL, PRODUCT P, MEMBER M 
@@ -104,11 +115,9 @@
 		AND ROWNUM = 1
 	</select>
 	
-	<!-- <insert id="insertReview" parameterType="review">
-		INSERT INTO REVIEW VALUES(SEQ_REVIEW_NO.NEXTVAL, #{ review_contents }, SYSDATE, #{ review_title }, #{ member_no }, #{ product_no }, #{order_no})
-	</insert> -->
+	
 	<insert id="insertReview" parameterType="review">
-		INSERT INTO REVIEW VALUES(SEQ_REVIEW_NO.NEXTVAL, #{ review_contents }, SYSDATE, #{ review_title }, #{ member_no }, #{ product_no }, #{order_no}, #{review_rating})
+		INSERT INTO REVIEW VALUES(SEQ_REVIEW_NO.NEXTVAL, #{ review_contents }, SYSDATE, #{ review_title }, #{ member_no }, #{ product_no }, #{order_no}, #{review_rating}),#{reviewatt_name})
 	</insert> 
 	
 	<delete id="deleteReviewAll" parameterType="_int">

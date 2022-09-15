@@ -48,7 +48,7 @@
 	                                	<span class="product-no" style="display:none;">${ s.product_no } </span>
 	                                    <div class="brand-name">${s.brand_name }</div>
 	                                    <span class="product-name">${s.product_name } </span>
-	                                    <span class="product-option">${s.product_size }</span>
+	                                    <span class="product-option">${s.product_size } mm</span>
 	                                </div>
 	                            </td>
 	                            <td id="order_no">
@@ -177,6 +177,8 @@
 				console.log(data[0].order_no);
 				console.log(data[0].receiver_name);
 				console.log(data[0].order_date); // ? error
+				console.log(data[0].product_size);
+				console.log(data[0].order_size);
 				$('.order-no-area>span.order-no').text(data[0].order_no);
 				$('.customer-name').text(data[0].receiver_name);
 				$('.customer-address').text(data[0].order_address);
@@ -186,6 +188,7 @@
 				$('.modal-date>div.order-date').text(data[0].order_date);
 				$('.modal-quantity>div.order-quantity').text(data[0].order_quantity);
 				$('.price-area>span.price-amount').text(data[0].total_price);
+				$('.modal-memo>span.product-memo').text(data[0].order_memo);
 			},
 			error: function(){
 				alert('주문 상세보기 실패');

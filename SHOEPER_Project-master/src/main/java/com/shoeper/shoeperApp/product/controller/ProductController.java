@@ -127,16 +127,6 @@ public class ProductController {
 		// pType = 1 ? 브랜드 : 상품
 		int pType = p.getProduct_type();
 
-			System.out.println("product_no : " + p.getProduct_no());
-			System.out.println("product_type : " + p.getProduct_type());
-			System.out.println("product_member_no : " + p.getMember_no());
-			System.out.println("product_name : " + p.getProduct_name());
-			System.out.println("product_price : " + p.getProduct_price());
-			System.out.println("product_detail : " + p.getProduct_detail());
-			System.out.println("product_sizeinfo : " + p.getProduct_sizeinfo());
-			System.out.println("product_size : " + p.getProduct_size());
-			System.out.println("product_status : " + p.getProduct_status());
-			System.out.println("second_brand_name : " + p.getSecond_brand_name());
 
 		// 1. 파일 저장 경로 및 파일 정보를 담을 객체 생성
 		List<Attachment> attachList = new ArrayList<>();
@@ -485,11 +475,7 @@ public class ProductController {
 
 	
 	
-	@RequestMapping("/product/ending.do")
-	public String ending() {
 	
-		return "common/ending";
-	}
 	
 	
 }

@@ -18,4 +18,5 @@ public class Review4view implements Serializable {
 	private String review_contents;
 	private int review_no;
 	private int review_rating;
+	private String reviewatt_name;
 }

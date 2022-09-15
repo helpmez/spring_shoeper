@@ -47,6 +47,7 @@
                             <td>
                                 <div class="product-info">
                                     <span class="product-name">${o.product_name}</span>
+                                    
                                 </div>
                             </td>
                             <td>
@@ -176,15 +177,23 @@
 				console.log(data[0].order_no);
 				console.log(data[0].receiver_name);
 				console.log(data[0].order_date); // ? error
+				console.log(data[0].order_memo);
+				console.log(data[0].order_size);
+				console.log(data[0].product_size);
+				
 				$('.order-no-area>span.order-no').text(data[0].order_no);
 				$('.customer-name').text(data[0].receiver_name);
 				$('.customer-address').text(data[0].order_address);
 				// $('.customer-phone').text(data[0].order_address);
-				$('.modal-product>span.product-name').text(data[0].product_name);
+				$('.modal-product>span.product-name').text(data[0].product_name);				
 				$('.customer-address').text(data[0].order_address);
 				$('.modal-date>div.order-date').text(data[0].order_date);
 				$('.modal-quantity>div.order-quantity').text(data[0].order_quantity);
+				/* $('.modal-size>div.product-size').text(data[0].order_memo);  */			
 				$('.price-area>span.price-amount').text(data[0].total_price);
+				$('.modal-size>div.product-size').text(data[0].order_size);
+				$('.modal-memo>span.product-memo').text(data[0].order_memo); 
+				
 			},
 			
 			error: function(){

@@ -115,8 +115,14 @@
 	                               <c:if test="${ p.product_stock_250 != 0}">
 	                               		<span>250mm,</span>
 	                               </c:if>
-	                               <c:if test="${ p.product_stock_240 != 0}">
-	                               		<span>260mm</span>
+	                               <c:if test="${ p.product_stock_260 != 0}">
+	                               		<span>260mm,</span>
+	                               </c:if>
+	                               <c:if test="${ p.product_stock_270 != 0}">
+	                               		<span>270mm,</span>
+	                               </c:if>
+	                               <c:if test="${ p.product_stock_280 != 0}">
+	                               		<span>280mm</span>
 	                               </c:if>
 	                                <br><br>
 	                                <span>￦</span>

@@ -1,5 +1,6 @@
 package com.shoeper.shoeperApp.product.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;

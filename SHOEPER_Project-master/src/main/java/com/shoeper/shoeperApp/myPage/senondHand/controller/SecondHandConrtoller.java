@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,14 +39,6 @@ import com.shoeper.shoeperApp.product.model.vo.ReviewAtt;
 @Controller
 public class SecondHandConrtoller {
 
-	// Order_Detail 모달 (주문번호클릭시)
-	// Info 회원정보
-	// Product 상품목록 (중고상품 올린 페이지)
-	// Purchased 주문상품(구매완료)
-	// Sale 판매한 상품
-	// Review Sale페이지에서 구매한 상품 리뷰 작성하기
-
-	// O_ORDER , O_ORDER_LIST 는 무조건 결제가 된 상품들
 
 	@Autowired
 	SecondHandService secondHandService;
@@ -60,38 +53,30 @@ public class SecondHandConrtoller {
 	BCryptPasswordEncoder bcrypt;
 
 	@RequestMapping("/myPage/myPage_Info.mp")
-	public String myPage_Info() {
+	public String myPage_Info( Member member, Model  model ) {
+		
+		int member_no = member.getMember_no(); 
+		// 구매된 상품 리스트 중에 현재 회원의 상품내역이 있다면 , 판매확인 안내팝업창 출력
+	
+		List<Integer> pnoList = secondHandService.selectProductSold(); 
+	
+		List<Integer> sList = new LinkedList<>();
+	
+		
+		 for(int i=0;i<pnoList.size(); i++) {
+			 List<Integer> pnomember_no = secondHandService.selectMemberSelling(pnoList.get(i));
+			 for(int j=0; j<pnomember_no.size(); j++) {
+				 
+				 if(member_no == pnomember_no.get(j)) model.addAttribute("popup2",1);
+				 
+			 }
+			 
+		 }
+					
 		return "myPage/myPage_Info";
 	}
 	// 마이페이지 - 회원(중고) 정보 변경 
 	// 1. 비밀번호 변경
-	/*
-	 * @RequestMapping("/myPage/update_Password.do") public String
-	 * update_Password(@RequestParam(value = "password") String password,
-	 * 
-	 * @RequestParam(value = "new_password") String new_password,
-	 * 
-	 * @RequestParam(value = "confirm_password") String confirm_password, Member
-	 * member, Model model) {
-	 * 
-	 * System.out.println("로그인 된 회원 / 비밀번호 : " + member.getMember_id() + " / " +
-	 * member.getMember_pw());
-	 * 
-	 * if (!new_password.equals(confirm_password)) {
-	 * System.out.println("new password not equals"); return
-	 * "redirect:myPage_Info.mp"; } if (!bcrypt.matches(password,
-	 * member.getMember_pw())) { System.out.println("not equals current password");
-	 * return "redirect:myPage_Info.mp"; }
-	 * 
-	 * member.setMember_pw(bcrypt.encode(new_password));
-	 * 
-	 * int result = secondHandService.updatePassword(member);
-	 * 
-	 * if (result > 0) { model.addAttribute("member", member);
-	 * System.out.println("비밀번호 변경 완료 -> " + member.getMember_pw()); }
-	 * 
-	 * return "redirect:myPage_Info.mp"; }
-	 */
 	
 	@RequestMapping("/myPage/update_Password.do")
 	public String update_Password(@RequestParam String password, 
@@ -372,8 +357,7 @@ public class SecondHandConrtoller {
 			@RequestParam(value = "cPage", required = false, defaultValue = "1") int cPage) {
 
 		String member_name = member.getMember_name();
-
-		System.out.println("판매자 이름 -> " + member_name);
+		
 
 		// 한 페이지당 상품 갯수
 		int numPerPage = 12;
@@ -420,6 +404,8 @@ public class SecondHandConrtoller {
 	public int purchaseStatusChange(@RequestParam int orderNo) {
 
 		int result = secondHandService.updatePurchaseStatus(orderNo);
+		List<Integer> product_no = secondHandService.selectProductByOrderno(orderNo);
+		
 		
 		//int status = secondHandService.selectSecondHandStatus(orderNo);
 
@@ -429,6 +415,12 @@ public class SecondHandConrtoller {
 
 		if (result > 0) {
 			order_status = 3;
+			
+			for(int i=0; i<product_no.size(); i++) {
+				
+				secondHandService.deleteProduct(product_no.get(i));
+				System.out.println("상품번호"+product_no.get(i)+"삭제완료");
+			}
 		}
 
 		return order_status;
@@ -455,12 +447,14 @@ public class SecondHandConrtoller {
 	}
 
 	@RequestMapping("/myPage/reviewEnroll.mp")
-	public String reviewEnroll(Review review, Model model, HttpServletRequest req,MultipartFile[] upFiles) {
+	public String reviewEnroll(Review review, Model model, HttpServletRequest req,
+			@RequestParam(value = "reviewImg", required = false) MultipartFile[] upFiles
+			) {
 		
 		int pno = review.getProduct_no();
 		int mno = review.getMember_no();
 	
-		List<ReviewAtt> ReviewAttList = new ArrayList<>();
+		List<Review> ReviewList = new ArrayList<>();
 		int att_level = 0;
 		String savePath = req.getServletContext().getRealPath("/resources/images/reviewImgUpload");
 		
@@ -481,22 +475,23 @@ public class SecondHandConrtoller {
 					e.printStackTrace();
 				}
 
-
-				ReviewAtt a = new ReviewAtt();
 				
-				a.setAtt_name(originName);
-
-				att_level++;
-				a.setAtt_level(att_level); 
-				a.setProduct_no(pno); 
-				a.setMember_no(mno);
-
-				ReviewAttList.add(a);
+			
+				 
+				review.setReviewatt_name(originName);
+				review.setProduct_no(pno); 
+				review.setMember_no(mno);
+				
 			}
+		} 
+		if(review.getReviewatt_name()==null) {
+			review.setReviewatt_name("NO_IMAGE.png");
+			
 		}
+		
 		String msg = "";
 		String loc = "";
-		
+		System.out.println("image name : " + review.getReviewatt_name());
 		productService.updateRating(review);
 		int result = secondHandService.insertReview(review);
 

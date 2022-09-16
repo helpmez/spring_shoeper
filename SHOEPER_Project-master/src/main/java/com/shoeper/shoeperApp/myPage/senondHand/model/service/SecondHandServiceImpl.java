@@ -118,7 +118,29 @@ public class SecondHandServiceImpl implements SecondHandService {
 	@Override
 	public int selectSearchTotalContents(String totalSearch) {
 		return secondHandDAO.selectSearchTotalContents(totalSearch);
+		
 	}
 	
-
+	@Override 
+	
+	public List<Integer> selectProductByOrderno(int orderNo) { 
+		return secondHandDAO.selectProductByOrderno(orderNo);
+	}
+	
+	@Override 
+	
+	public List<Integer> selectProductSold(){
+		return secondHandDAO.selectProductSold();
+		
+	}
+	
+	@Override 
+	
+	public List<Integer> selectMemberSelling(int productNo){
+		
+		return secondHandDAO.selectMemberSelling(productNo);
+	}
 }
+	
+
+

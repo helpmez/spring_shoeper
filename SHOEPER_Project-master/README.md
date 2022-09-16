@@ -24,18 +24,18 @@
  | ------ | ------ | 
  | API | 아임포트, 카카오 로그인 | 
  | 서버,클라이언트 데이터 전송 | AJAX | 
- | 서버,클라이언트 데이터 전송 타입 | JSON | 
  | 스프링시큐리티 |  해시 암호화 및 솔팅 | 
 
 ## 개발 환경 및 도구
+|         |          |
+| ------ | ------ |
+| 운영체제 | Windows10 OS x64
+|   프레임워크    |   Spring Framework 3.1       |
+|    서버     |   Apache Tomcat 9.0      | 
+|     언어      |    Java 11.0.8        | 
+|    DBMS      |    Oracle DB 11g Express Edition 11.2.0.2.0 (64bit)        |  
+|    통합개발환경       |    sts-3.9.16.RELEASE       |
 
-- Windows10 OS x64
-- Spring Framework 3.1
-- Apache Tomcat 9.0
-- Java 11.0.8
-- Oracle DB 11g Express Edition 11.2.0.2.0 (64bit)
-- sts-3.9.16.RELEASE
-- jQuery 3.6.0
 
 
 ## 외부 라이브러리(Maven)
@@ -47,8 +47,7 @@
 | mybatis-spring 2.0.6 | ojdbc6 11.2.0.4 |
 | lombok 1.18.18 | spring-security-core 5.3.6 RELEASE |
 | jackson-databind 2.11.4 | commons-fileupload 1.4 |
-| javax.mail 1.5.6 | httpclient 4.5.13 |
-| jstl-1.2jar |
+| javax.mail 1.5.6 | jstl-1.2jar |
 
 ## ERD 설계
 -----

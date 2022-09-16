@@ -86,10 +86,10 @@
                         <select name="" id="selectSize" style="width: 130px; float: right; margin-right: 30px;">
 
                             <option value="">선택안함</option>
-                            <c:if test="${ product.product_stock_240 == 0 && product.product_stock_250 == 0 && product.product_stock_260 == 0}">
+                            <c:if test="${ product.product_stock_240 == 0 && product.product_stock_250 == 0 && product.product_stock_260 == 0&&product.product_stock_270 == 0 && product.product_stock_280 == 0}">
                             	<option value="">품절</option>
                            	 </c:if>
-                            <c:if test="${ product.product_stock_240 != 0 || product.product_stock_250 != 0 || product.product_stock_260 != 0}">
+                            <c:if test="${ product.product_stock_240 != 0 || product.product_stock_250 != 0 || product.product_stock_260 != 0|| product.product_stock_270 != 0 || product.product_stock_280 != 0}">
                             	<option value="${ product.product_size }">${ product.product_size }</option>
                            	 </c:if>
 

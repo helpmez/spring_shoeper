@@ -127,6 +127,8 @@
 				            <option value="240">240</option>
 				            <option value="250">250</option>
 				            <option value="260">260</option>
+				            <option value="270">270</option>
+				            <option value="280">280</option>
                         </select> <br>
                     </dt><hr>
                 </dl>

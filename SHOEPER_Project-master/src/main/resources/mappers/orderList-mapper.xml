@@ -79,7 +79,7 @@
 			AND O.ORDER_NO = OL.ORDER_NO
 			AND OL.PRODUCT_NO = P.PRODUCT_NO
 			AND M.MEMBER_NAME = #{member_name}
-		ORDER BY O.ORDER_DATE ASC
+		ORDER BY O.ORDER_NO DESC
 		
 		
 	</select>
@@ -117,7 +117,7 @@
 	
 	
 	<insert id="insertReview" parameterType="review">
-		INSERT INTO REVIEW VALUES(SEQ_REVIEW_NO.NEXTVAL, #{ review_contents }, SYSDATE, #{ review_title }, #{ member_no }, #{ product_no }, #{order_no}, #{review_rating}),#{reviewatt_name})
+		INSERT INTO REVIEW VALUES(SEQ_REVIEW_NO.NEXTVAL, #{ review_contents }, SYSDATE, #{ review_title }, #{ member_no }, #{ product_no }, #{order_no}, #{review_rating},#{reviewatt_name})
 	</insert> 
 	
 	<delete id="deleteReviewAll" parameterType="_int">
@@ -135,6 +135,29 @@
 		UPDATE PURCHASE
 		SET PURCHASE_STATUS = 3
 		WHERE ORDER_NO = #{order_no}
+	</update>
+	
+	<select id="selectProductByOrderno" parameterType="_int" resultType="_int">
+		SELECT PRODUCT_NO 
+		FROM O_ORDER_LIST 
+		WHERE ORDER_NO = #{order_no}
+	</select>
+	
+	<select id="selectProductSold" resultType="_int">
+			SELECT PRODUCT_NO FROM O_ORDER_LIST WHERE ORDER_STATUS = 1  
+	</select>
+	
+	<select id="selectMemberSelling" parameterType="_int" resultType="_int">
+			SELECT MEMBER_NO FROM PRODUCT 
+			WHERE PRODUCT_NO = #{product_no}
+	</select>
+	
+	
+	
+	<update id="updateProductStatus" parameterType="_int">
+		UPDATE PRODUCT 
+		SET PRODUCT_STATUS = N
+		WHERE PRODUCT_NO = #{product_no}
 	</update>
 	
 	<select id="purchaseSelectTotalContents" resultType="_int">

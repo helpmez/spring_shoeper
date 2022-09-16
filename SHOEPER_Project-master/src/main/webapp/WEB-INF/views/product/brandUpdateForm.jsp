@@ -114,6 +114,10 @@
 				            <input type="text" id="quantity2" class="ininput2" placeholder="수량 입력" name="product_stock_250" value="${ product.product_stock_250 }"><br>
 				            <span> 260 size : &nbsp;&nbsp;&nbsp; </span>
 				            <input type="text" id="quantity3" class="ininput2" placeholder="수량 입력" name="product_stock_260" value="${ product.product_stock_260 }"><br>
+				            <span> 270 size : &nbsp;&nbsp;&nbsp; </span>
+				            <input type="text" id="quantity4" class="ininput2" placeholder="수량 입력" name="product_stock_270" value="${ product.product_stock_270 }"><br>
+				            <span> 280 size : &nbsp;&nbsp;&nbsp; </span>
+				            <input type="text" id="quantity5" class="ininput2" placeholder="수량 입력" name="product_stock_280" value="${ product.product_stock_280 }"><br>
                     </dt><hr>
                 </dl>
             

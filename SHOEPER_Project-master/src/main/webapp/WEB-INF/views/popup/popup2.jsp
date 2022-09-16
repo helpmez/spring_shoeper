@@ -18,7 +18,7 @@
         }
         function closePop() {
             if ( document.pop_form.chkbox.checked ){
-                setCookie( "maindiv", "done" , 1 );
+                setCookie( "maindiv2", "done" , 1 );
             }
             document.all['layer_popup'].style.visibility = "hidden";
         }
@@ -62,15 +62,14 @@ font-size:16px; font-weight:600; width: 40px; height : 30px;color:black; float: 
 <!-- layer popup content -->
 <div class="layerPopup" id="layer_popup" style="visibility: visible;">
     <div class="layerBox">
-        <h4 class="title">SHOEPER 공지사항</h4>
+        <h4 class="title">안내</h4>
         <div class="cont">
-            <p>
-<img src="${pageContext.request.contextPath}/resources/images/popup/popup.jpg" width=350 height=500 usemap="#popup" alt="event page">
-            </p>
-        </div>
+       		<span>판매된 상품이 있습니다! 확인하세요</span>
+       	</div>
           <form name="pop_form">
         <div id="check" ><input type="checkbox" name="chkbox" value="checkbox" id='chkbox' ><label for="chkbox">&nbsp&nbsp오늘 하루동안 보지 않기</label></div>
-		<div id="close" ><a href="javascript:closePop();">닫기</a></div>    
+		</br><div id="close" ><a href="javascript:closePop();">닫기</a></div>
+		<div id="saleList"><a href="${pageContext.request.contextPath }/myPage/myPage_Sale.mp">판매내역으로 이동</a></div>    
 		</form>
 	</div>
 </div>
@@ -79,7 +78,7 @@ font-size:16px; font-weight:600; width: 40px; height : 30px;color:black; float: 
 </script> 
  <script language="Javascript">
     cookiedata = document.cookie;   
-    if ( cookiedata.indexOf("maindiv=done") < 0 ){     
+    if ( cookiedata.indexOf("maindiv2=done") < 0 ){     
         document.all['layer_popup'].style.visibility = "visible";
     }
     else {

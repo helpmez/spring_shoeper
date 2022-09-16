@@ -180,8 +180,14 @@ public class ProductController {
 				p.setProduct_stock_240(1);
 			} else if (inputSize.equals("250")) {
 				p.setProduct_stock_250(1);
-			} else {
+			} else if (inputSize.equals("260")) {
 				p.setProduct_stock_260(1);
+			}else if (inputSize.equals("270")) {
+				p.setProduct_stock_270(1);
+			}
+			
+				else {
+				p.setProduct_stock_280(1);
 			}
 		}
 		
@@ -330,6 +336,8 @@ public class ProductController {
 				originalProduct.setProduct_stock_240(p.getProduct_stock_240());
 				originalProduct.setProduct_stock_250(p.getProduct_stock_250());
 				originalProduct.setProduct_stock_260(p.getProduct_stock_260());
+				originalProduct.setProduct_stock_270(p.getProduct_stock_270());
+				originalProduct.setProduct_stock_280(p.getProduct_stock_280());
 			} else {
 				originalProduct.setProduct_size(p.getProduct_size());
 			}

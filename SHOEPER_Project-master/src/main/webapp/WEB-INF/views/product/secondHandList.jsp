@@ -125,7 +125,11 @@
 	                                     <br><br>
 	                                 &nbsp;&nbsp;&nbsp;&nbsp; <span>￦</span>
 	                                  &nbsp;&nbsp;&nbsp;&nbsp;<span class="pPrice">${ p.product_price }</span>
+	                                  <c:if test="${p.product_status == S }">
+	                                  <span class="tradeDone"></span>
+	                                  </c:if>
 	                            </span>
+	                           
 	                        </div>
 	                    </li>
 	                    <c:if test="${ vs.count%4 == 0 || vs.count eq list.size() }">

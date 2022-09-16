@@ -50,6 +50,12 @@ public interface SecondHandService {
 	List<Map<String, String>> selectSearchResult(int cPage, int numPerPage, String totalSearch);
 
 	int selectSearchTotalContents(String totalSearch);
+	
+	List<Integer> selectProductByOrderno(int orderNO);
+	
+	List<Integer> selectProductSold();
+	
+	List<Integer> selectMemberSelling(int productNo);
 
 
 }

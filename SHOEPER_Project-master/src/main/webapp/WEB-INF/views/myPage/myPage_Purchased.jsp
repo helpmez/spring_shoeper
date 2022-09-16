@@ -61,7 +61,9 @@
 	                            </td>
 	                            <td>
 	                                <button class="confirm-purchase" style="display: none;" id="${s.order_no }">구매 확정</button>
+	                       
 	                                <button class="write-review" style="display: none;" >리뷰 작성</button>
+	                               
 	                            </td>
 	                        </tr>
 	                    </tbody>
@@ -135,7 +137,7 @@
 	$('.confirm-purchase').click(function() {
 		
 		var orderNo = $(this).attr('id');
-		
+		/* var productNo = ${'.order-no'}.attr('id'); */
 		$.ajax({
 			type: "POST",
 			url: "${pageContext.request.contextPath}/myPage/purchaseStatusChange.do",

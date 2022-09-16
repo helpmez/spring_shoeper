@@ -122,6 +122,14 @@ public class SecondHandDAOImpl implements SecondHandDAO {
 		
 		return result;
 	}
+	
+	@Override 
+	public List<Integer> selectProductByOrderno(int orderNo) {
+		
+			List<Integer> product_no = sqlSession.selectList("orderList-mapper.selectProductByOrderno",orderNo);
+		
+			return product_no;
+	}
 
 	@Override
 	public Review_ProductInfo selectReviewInfo(HashMap<String, Object> map) {
@@ -169,5 +177,17 @@ public class SecondHandDAOImpl implements SecondHandDAO {
 		return sqlSession.selectOne("product-mapper.selectSearchTotalContents", totalSearch);
 	}
 
-
+	@Override 
+	public List<Integer> selectProductSold() {
+		return sqlSession.selectList("orderList-mapper.selectProductSold");
+		
+	}
+	
+	@Override 
+	public List<Integer> selectMemberSelling(int productNo) {
+		return sqlSession.selectList("orderList-mapper.selectMemberSelling", productNo);
+		
+	}
 }
+
+

@@ -103,6 +103,8 @@
 		            <option value="240">240</option>
 		            <option value="250">250</option>
 		            <option value="260">260</option>
+		             <option value="270">270</option>
+		            <option value="280">280</option>
 	            </select>
 	            <select name="product_category" id="selectCategory" style="width: 160px;" required>
 		            <option value="">카테고리</option>

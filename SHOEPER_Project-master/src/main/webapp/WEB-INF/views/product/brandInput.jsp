@@ -79,6 +79,11 @@
 		            <input type="text" id="quantity2" class="ininput2" placeholder="수량 입력" name="product_stock_250" value="0"><br>
 		            <span> 260 : &nbsp;&nbsp; </span>
 		            <input type="text" id="quantity3" class="ininput2" placeholder="수량 입력" name="product_stock_260" value="0"><br>
+		            <span> 270 : &nbsp;&nbsp; </span>
+		            <input type="text" id="quantity4" class="ininput2" placeholder="수량 입력" name="product_stock_270" value="0"><br>
+		            <span> 280 : &nbsp;&nbsp; </span>
+		            <input type="text" id="quantity5" class="ininput2" placeholder="수량 입력" name="product_stock_280" value="0"><br>
+		        
 		            <hr>
 		            <h5>Category</h5>
 					<select name="product_category" id="selectCategory" style="width: 160px;" required>

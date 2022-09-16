@@ -14,6 +14,9 @@
     
     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <c:import url="../common/styler.jsp"/>
+    <c:if test="${ member != null && popup2 == 1}">
+    <jsp:include page="../popup/popup2.jsp"/> <!-- 팝업창 -->
+    </c:if>
 </head>
 
 <body>

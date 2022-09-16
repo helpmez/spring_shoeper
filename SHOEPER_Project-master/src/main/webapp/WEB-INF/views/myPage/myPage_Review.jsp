@@ -58,10 +58,10 @@
                     <div class="reviewArea">
                         <div class="formArea">
                             <form action="reviewEnroll.mp" method="POST" id="review" enctype="multipart/form-data">
-	                            	<div class="fileArea" id="fileArea">							           
-							            <input type="file" accept="image/*" name="productImg" id="thumbImg1" onchange="loadImg(this, 1);" />
-							          <!--   <input type="file" accept="image/*" name="productImg" id="thumbImg2" onchange="loadImg(this, 2);" />	 -->						           
-							        </div>
+	                            	 <div class="fileArea" id="fileArea">							           
+							            <input type="file" accept="image/*" name="reviewImg" id="thumbImg1" onchange="loadImg(this, 1);" />
+							 							           
+							        </div> 
                                 <div class="review-title">
                                     <span>제목</span>
                                     <input type="text" name="review_title" class="input-review-title">
@@ -81,6 +81,7 @@
 									<input type="radio" name="review_rating" value="4" /><img src="${pageContext.request.contextPath}/resources/images/star/4_star.png"/>&nbsp;
 									<input type="radio" name="review_rating" value="5" /><img src="${pageContext.request.contextPath}/resources/images/star/5_star.png"/>
 								</div>
+								<br/>
                                  <div id="insertArea" class="inputBox1">
 						            <div id="contentImgArea1" style="cursor: pointer" class="imgInput iip">
 						                <img src="${pageContext.request.contextPath }/resources/images/imgInput.png" 
@@ -91,7 +92,7 @@
 						                    id="contentImg2" class="addImg"/>
 						            </div> --%>
 						        </div>
-                                
+                                </br>
                                 <div class="btnArea">
 		                            <button type="submit"> 작성하기 </button>
 		                            <button onclick="history.back()"> 뒤로가기 </button>

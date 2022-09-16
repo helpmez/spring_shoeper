@@ -47,11 +47,47 @@
                 
                 <h4 id="pName">${ product.product_name }</h4>
                 <span style="margin-left: 240px;" >￦</span><span id="ppPrice">${ product.product_price }</span> <br>
+                <c:choose> 
+					<c:when test="${product.product_tot_rating /product.product_tot_ratingnum == 5}">
+						<img src="<c:url value="/resources/images/star/5_star.png"/>"/>
+					</c:when> 
+					<c:when test="${product.product_tot_rating /product.product_tot_ratingnum > 4   && product.product_tot_rating /product.product_tot_ratingnum  < 5 }">
+						<img src="<c:url value="/resources/images/star/4.5_star.png"/>"/>
+					</c:when> 
+					<c:when  test="${product.product_tot_rating /product.product_tot_ratingnum  == 4}">
+						<img src="<c:url value="/resources/images/star/4_star.png"/>"/>
+					</c:when>
+					<c:when test="${product.product_tot_rating /product.product_tot_ratingnum  >3   && product.product_tot_rating /product.product_tot_ratingnum  < 4 }">
+						<img src="<c:url value="/resources/images/star/3.5_star.png"/>"/>
+					</c:when>
+					<c:when test="${product.product_tot_rating /product.product_tot_ratingnum  == 3 }">
+						<img src="<c:url value="/resources/images/star/3_star.png"/>"/>
+					</c:when>
+					<c:when test="${product.product_tot_rating /product.product_tot_ratingnum  > 2   && product.product_tot_rating /product.product_tot_ratingnum  < 3 }">
+						<img src="<c:url value="/resources/images/star/2.5_star.png"/>"/>
+					</c:when>
+					<c:when test="${product.product_tot_rating /product.product_tot_ratingnum == 2}">
+						<img src="<c:url value="/resources/images/star/2_star.png"/>"/>
+					</c:when>
+					<c:when test="${product.product_tot_rating /product.product_tot_ratingnum  > 1   && product.product_tot_rating /product.product_tot_ratingnum  < 2 }">
+						<img src="<c:url value="/resources/images/star/1.5_star.png"/>"/>
+					</c:when>
+					<c:when test="${product.product_tot_rating /product.product_tot_ratingnum == 1}">
+						<img src="<c:url value="/resources/images/star/1_star.png"/>"/>
+					</c:when>
+					<c:otherwise>
+						<img src="<c:url value="/resources/images/star/0_star.png"/>"/>
+					</c:otherwise> 
+				</c:choose>
+				&nbsp;&nbsp;<span style="text-decoration : underline; ">${product.product_tot_ratingnum }개</span>의 후기가 있습니다! </br></br>
                 <span>
                 <b>Stock</b><br>
                 240 size : ${product.product_stock_240 }<br>
                 250 size : ${product.product_stock_250 }<br>
-                260 size : ${product.product_stock_260 } 
+                260 size : ${product.product_stock_260 }<br> 
+                270 size : ${product.product_stock_270 }<br>
+                280 size : ${product.product_stock_280 }
+            
                 </span>
                 <hr>
                 
@@ -106,6 +142,18 @@
                             <c:if test="${ product.product_stock_260 == 0}">
                             	<option value="">260 - 품절</option>
                             </c:if>
+                            <c:if test="${ product.product_stock_270 != 0}">
+                            	<option value="270">270</option>
+                            </c:if>
+                            <c:if test="${ product.product_stock_270 == 0}">
+                            	<option value="">270 - 품절</option>
+                            </c:if>
+                            <c:if test="${ product.product_stock_280 != 0}">
+                            	<option value="280">280</option>
+                            </c:if>
+                            <c:if test="${ product.product_stock_280 == 0}">
+                            	<option value="">280 - 품절</option>
+                            </c:if>
                         </select> <br>
                     </dt><hr>
                     <dt class="pOrigin">
@@ -136,12 +184,13 @@
             </div>
         </div>
     </div>
-
+<!--리뷰영역 -->
     <div class="review_list" style="clear:both;">
         <br><br><br><hr>
 
         <div style="margin-bottom: 15px;">
         	<span class="underMenu review" style="margin-bottom: 50px;">REVIEW</span><span class="underMenu faq" style="margin-bottom: 50px;">FAQ</span>
+        	<span class="underMenu size" style="margin-bottom: 50px;">SIZE TABLE</span>
         </div><hr>
         
         <dl id="review-table">
@@ -190,7 +239,7 @@
 	           	<dd class="dropArea">
 	            	<div>
 	                	<br />
-	                	<img style="margin-left: 150px" src="${pageContext.request.contextPath }/resources/images/reviewImgUpload/${ r.reviewatt_name }" alt="">
+	                	<img style="margin-left: 150px" src="${pageContext.request.contextPath }/resources/images/reviewImgUpload/${r.reviewatt_name}" alt="">
 	                	<br/>
 	                	<br/>
 	                	<span class="review-content">
@@ -321,13 +370,26 @@
 	                	<br />
 	                	<span class="faq-text">
 		                	로그인 아이콘 클릭 > 마이페이지에서 주문하신 상품의 리뷰만 작성하실 수 있습니다. <br /> 
-	                		리뷰 내용은 텍스트만 작성할 수 있으며 사용하시는 닉네임으로 등록됩니다. <br />
+	                		리뷰 이미지는 한장만 등록할 수 있으며 사용하시는 닉네임으로 등록됩니다. <br />
 	                	</span>
 	                	
 	            	</div>
 	            </dd>
 	            
 	         </dl>   
+	         
+	         <dl id="size-table">
+        		<dt class="showArea">
+        			<span class="th">한국(mm)</span>
+        			<span class="th">미국<br>남&nbsp;&nbsp;&nbsp;&nbsp;여</span>
+        			<span class="th">유럽<br>남&nbsp;&nbsp;&nbsp;&nbsp;여</span>
+        			<span class="th">인터네셔널 사이즈<br>남&nbsp;&nbsp;&nbsp;&nbsp;여</span><hr>
+        			<span class="th">230</span>
+        			
+        			
+        		</dt>
+        		
+        	</dl>
 	        
         <hr />
         
@@ -349,7 +411,7 @@
 		$(function() {
 		    $(document).ready(function(){
 		        $('#ex1').zoom();
-		      
+		        $('#size-table').css('display', 'none');
 		    });
 		});
     
@@ -636,10 +698,14 @@
 		$('.review').on('click', function() {
 			$('#FAQ-table').css('display', 'none');
 			$('#review-table').css('display', 'block');
+			$('#size-table').css('display', 'none');
 			$(this).css({
 				'text-decoration': 'underline'
 			});
 			$(this).siblings('.faq').css({
+				'text-decoration': 'none'
+			});
+			$(this).siblings('.size').css({
 				'text-decoration': 'none'
 			});
 		});
@@ -648,13 +714,33 @@
 		$('.faq').on('click', function() {
 			$('#review-table').css('display', 'none');
 			$('#FAQ-table').css('display', 'block');
+			$('#size-table').css('display', 'none');
 			$(this).css({
 				'text-decoration': 'underline'
 			});
 			$(this).siblings('.review').css({
 				'text-decoration': 'none'
 			});
+			$(this).siblings('.size').css({
+				'text-decoration': 'none'
+			});
 		});
+		
+		$('.size').on('click', function() {
+			$('#review-table').css('display', 'none');
+			$('#FAQ-table').css('display', 'none');
+			$('#size-table').css('display', 'block');
+			$(this).css({
+				'text-decoration': 'underline'
+			});
+			$(this).siblings('.review').css({
+				'text-decoration': 'none'
+			});
+			$(this).siblings('.faq').css({
+				'text-decoration': 'none'
+			});
+		});
+		
 		
 		
 		$(function() {

@@ -44,12 +44,12 @@
 					<li><i class="fas fa-user fa-lg" id="loginBtn"
 						data-target="#loginModal" data-toggle="modal" href="${contextContext.request.contextPage }/views/myPage/myPage_Info.jsp"></i> 
 						<c:if test="${not empty member}">&nbsp; &nbsp; &nbsp;${member.member_nickname } 님 반갑습니다!</c:if></li>
-					 <li>
+					 <!-- <li>
 						<span class="fa-stack fa-lg"> 
 							<i class="far fa-sun fa-stack-1x fa-lg"></i> 
 							<i class ="far fa-moon fa-stack-1xfa-lg"></i>
 						</span>
-					</li> 
+					</li> --> 
 
 				</ul>
 
@@ -99,7 +99,7 @@
 		//       alert("로그인 되있으면 마이페이지 안되있으면 로그인 페이지");
 		//  })
 		
-		$('.fa-moon').on('click', function() {
+		/* $('.fa-moon').on('click', function() {
 			
 			$('html').toggleClass("dark");
 	        var mode = $('html').attr('class');
@@ -135,7 +135,7 @@
 			$('.fa-sun').css('visibility', 'hidden');
 			$('.fa-moon').show();
 	        
-		});
+		}); */
 		$('.header_logo').on('click', function() {
 			location.href="${pageContext.request.contextPath }/";
 		})

@@ -47,7 +47,7 @@
                                 <div class="product-info">
                                     <div class="brand-name">${s.brand_name }</div>
                                     <span class="product-name">${s.product_name } </span>
-                                    <span class="product-option">${s.product_size }</span>
+                                    <span class="product-option">${s.product_size }mm</span>
                                 </div>
                             </td>
                             <td>

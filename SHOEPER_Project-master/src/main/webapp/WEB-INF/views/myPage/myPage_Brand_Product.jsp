@@ -80,7 +80,11 @@
                                     <span class="product-size">250</span>&nbsp;-
                                     <span class="product-stock">${p.product_stock_250}</span><br>
                                     <span class="product-size">260</span>&nbsp;-
-                                    <span class="product-stock">${p.product_stock_260}</span>
+                                    <span class="product-stock">${p.product_stock_260}</span><br>
+                                     <span class="product-size">270</span>&nbsp;-
+                                    <span class="product-stock">${p.product_stock_270}</span><br>
+                                    <span class="product-size">280</span>&nbsp;-
+                                    <span class="product-stock">${p.product_stock_280}</span>
                                 </div>
                             </td>
                             <td class="total-price">${p.product_price} &#8361;</td>

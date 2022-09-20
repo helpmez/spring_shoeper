@@ -79,6 +79,12 @@ public class SecondHandDAOImpl implements SecondHandDAO {
 		
 		return resultA;
 	}
+	
+	@Override 
+	public void deleteSecondProduct(int productNo) {
+		
+		sqlSession.delete("productList-mapper.deleteSecondProduct",productNo);
+	}
 
 	@Override
 	public List<Map<String, String>> selectSaleProductList(int cPage, int numPerPage, String member_name) {

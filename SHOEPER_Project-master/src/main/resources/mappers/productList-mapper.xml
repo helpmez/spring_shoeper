@@ -70,6 +70,13 @@
 		WHERE PRODUCT_NO = #{product_no}
 	</update>
 	
+	<update id="deleteSecondProduct" parameterType="_int">
+		UPDATE PRODUCT
+		SET PRODUCT_STATUS = 'N'
+		WHERE PRODUCT_NO = #{product_no}
+		AND PRODUCT_TYPE = 2
+	</update>
+	
 	<delete id="deleteAllProduct" parameterType="_int">
 		DELETE FROM PRODUCT 
 		WHERE MEMBER_NO = #{member_no}

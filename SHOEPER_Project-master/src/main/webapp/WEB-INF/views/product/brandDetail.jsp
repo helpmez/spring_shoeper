@@ -380,12 +380,7 @@
 	         
 	         <dl id="size-table">
         		<dt class="showArea">
-        			<span class="th">한국(mm)</span>
-        			<span class="th">미국<br>남&nbsp;&nbsp;&nbsp;&nbsp;여</span>
-        			<span class="th">유럽<br>남&nbsp;&nbsp;&nbsp;&nbsp;여</span>
-        			<span class="th">인터네셔널 사이즈<br>남&nbsp;&nbsp;&nbsp;&nbsp;여</span><hr>
-        			<span class="th">230</span>
-        			
+        		   <img style="margin-right: 150px; float : left;" src="${pageContext.request.contextPath }/resources/images/size.png">    			
         			
         		</dt>
         		

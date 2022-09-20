@@ -28,6 +28,8 @@ public interface SecondHandDAO {
 	List<Map<String, String>> selectProductList(int cPage, int numPerPage, int member_no);
 
 	int deleteProduct(int productNo);
+	
+	void deleteSecondProduct(int productNO);
 
 	List<Map<String, String>> selectSaleProductList(int cPage, int numPerPage, String member_name);
 

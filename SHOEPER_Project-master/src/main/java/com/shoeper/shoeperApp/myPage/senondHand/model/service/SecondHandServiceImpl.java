@@ -60,6 +60,12 @@ public class SecondHandServiceImpl implements SecondHandService {
 	public int deleteProduct(int productNo) {
 		return secondHandDAO.deleteProduct(productNo);
 	}
+	
+
+	@Override
+	public void deleteSecondProduct(int productNo) {
+	    secondHandDAO.deleteProduct(productNo);
+	}
 
 	@Override
 	public List<Map<String, String>> selectSaleProductList(int cPage, int numPerPage, String member_name) {

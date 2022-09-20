@@ -4,6 +4,8 @@ package com.shoeper.shoeperApp.member.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -32,6 +34,7 @@ import com.shoeper.shoeperApp.member.exception.MemberException;
 import com.shoeper.shoeperApp.member.model.service.MemberService;
 import com.shoeper.shoeperApp.member.model.vo.MailVO;
 import com.shoeper.shoeperApp.member.model.vo.Member;
+import com.shoeper.shoeperApp.myPage.senondHand.model.service.SecondHandService;
 
 
 
@@ -47,6 +50,9 @@ public class MemberController {
 	MemberService memberService;
 	
 	@Autowired
+	SecondHandService secondHandService;
+	
+	@Autowired
 	BCryptPasswordEncoder bcrypt; // 해시함수를 이용하여 암호화
 	
 	// 모달에서 마이페이지로 이동
@@ -54,7 +60,25 @@ public class MemberController {
 	public String goMyPage(HttpServletRequest req, Model model) {
 		
 		HttpSession session = req.getSession();
-		Member member = (Member) session.getAttribute("member");	 
+		Member member = (Member) session.getAttribute("member");
+		
+		int member_no = member.getMember_no(); 
+		// 구매된 상품 리스트 중에 현재 회원의 상품내역이 있다면 , 판매확인 안내팝업창 출력
+	
+		List<Integer> pnoList = secondHandService.selectProductSold(); 
+	
+	
+	
+		
+		 for(int i=0;i<pnoList.size(); i++) {
+			 List<Integer> pnomember_no = secondHandService.selectMemberSelling(pnoList.get(i));
+			 for(int j=0; j<pnomember_no.size(); j++) {
+				 
+				 if(member_no == pnomember_no.get(j)) model.addAttribute("popup2",1);
+				 
+			 }
+			 
+		 }
 		
 				
 		if ( member.getLogin_type() == 1) return "myPage/myPage_Brand_Info";  // login_type이 1이면 기업 로그인

@@ -75,7 +75,7 @@
 						
 					<tr>
 						<td class="deliverytd" style="width: 100px;">결제방법</td>
-						<td>카드결제</td>
+						<td>카카오페이</td>
 					</tr>
 					
 					<tr>

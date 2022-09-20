@@ -93,7 +93,7 @@
                 <!-- <div id="google-box">
                     <img id="icon-img" src="https://t1.daumcdn.net/cfile/tistory/99D8AF415B743DB636">
                     구글로 로그인  -->
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                  <!--   <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
                 <!-- </div> -->
                 <%-- <div id="kakao-box">
                     <!-- <img id="icon-img" src="https://t1.daumcdn.net/cfile/tistory/992DA6415B743DB62B"> -->

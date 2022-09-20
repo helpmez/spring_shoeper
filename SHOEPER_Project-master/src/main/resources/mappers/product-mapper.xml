@@ -210,8 +210,7 @@
 	<select id="selectNewProductImages" resultType="Attachment">
 		 SELECT A.PRODUCT_NO, ATT_NAME
 			FROM  ATTACHMENT A, PRODUCT P 
-			<![CDATA[WHERE ROWNUM <= 10]]>
-			AND P.PRODUCT_TYPE = 1
+			WHERE P.PRODUCT_TYPE = 1
 			AND A.ATT_LEVEL = 1
 			AND P.PRODUCT_NO = A.PRODUCT_NO
     	  ORDER BY P.PRODUCT_NO DESC

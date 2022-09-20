@@ -60,7 +60,7 @@ public class SecondHandConrtoller {
 	
 		List<Integer> pnoList = secondHandService.selectProductSold(); 
 	
-		List<Integer> sList = new LinkedList<>();
+		
 	
 		
 		 for(int i=0;i<pnoList.size(); i++) {
@@ -415,12 +415,12 @@ public class SecondHandConrtoller {
 
 		if (result > 0) {
 			order_status = 3;
-			
-			for(int i=0; i<product_no.size(); i++) {
-				
-				secondHandService.deleteProduct(product_no.get(i));
-				System.out.println("상품번호"+product_no.get(i)+"삭제완료");
-			}
+//			
+//			for(int i=0; i<product_no.size(); i++) {
+//				
+//				secondHandService.deleteSecondProduct(product_no.get(i));
+//				System.out.println("상품번호"+product_no.get(i)+"삭제완료");
+//			}
 		}
 
 		return order_status;
